@@ -7,7 +7,8 @@ const Block = () => {
     const pathname = usePathname()
     switch(pathname){
         case '/login':
-            return <MainBlock className="relative z-1"></MainBlock>
+            return <MainBlock title="Авторизация" text="Для входа в аккаунт Aeterna введите ваши данные" 
+            className="relative z-1"></MainBlock>
         case '/auth':
             return <MainBlock></MainBlock>
         case '/restore':
