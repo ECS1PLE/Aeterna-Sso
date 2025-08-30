@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geologica, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Background from "./Background";
+import Block from "./Block";
+
 const geologica = Geologica({
   variable: "--font-geologica",
   display: "swap",
@@ -33,9 +35,10 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geologica.variable} ${geistMono.variable} antialiased bg-black`}
+        className={`${geologica.variable} ${geistMono.variable} antialiased bg-black h-[100vh]`}
       >
         <Background />
+        <Block />
         {children}
       </body>
     </html>
