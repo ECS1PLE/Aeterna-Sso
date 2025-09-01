@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useState } from "react";
 import UIButton from "@/components/UI/Button/Button";
 import Input, { InputHandle } from "@/components/UI/Input/Input";
