@@ -4,6 +4,7 @@ import Input, { InputHandle } from "@/components/UI/Input/Input";
 import { Mail } from "lucide-react";
 import { LockIcon } from "lucide-react";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const Auth = () => {
   const emailRef = useRef<InputHandle>(null);
@@ -46,7 +47,9 @@ const Auth = () => {
         <UIButton color="white" icon={<ArrowRight />} onClick={handleContinue}>
           Продолжить
         </UIButton>
-        <UIButton color="transparent">Создать аккаунт</UIButton>
+        <Link href="/register">
+          <UIButton color="transparent">Создать аккаунт</UIButton>
+        </Link>
       </section>
     </>
   );
