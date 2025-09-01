@@ -7,6 +7,12 @@
   --color-aqua: #1892ea;
 }
 
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px none inset !important;
+  -webkit-text-fill-color: #e5e5e5 !important;
+  transition: background-color 9999s ease-in-out 0s; /* убираем желтый фон */
+}
+
 body {
   @apply bg-black overflow-x-hidden;
   font-family: var(--font-geologica), sans-serif;
