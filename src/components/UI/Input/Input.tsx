@@ -57,7 +57,7 @@ const Input = forwardRef<InputHandle, InputProps>(
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
           setError("Введите корректный email");
-          setValue(""); // очищаем поле при ошибке
+          setValue("");
           return false;
         }
       }
@@ -86,7 +86,7 @@ const Input = forwardRef<InputHandle, InputProps>(
               className={`absolute flex items-center gap-[6px] left-[14px] transition-all duration-300 pointer-events-none
                 ${
                   focused || value
-                    ? "top-[-10px] scale-90 text-neutral-400"
+                    ? "top-[-10px] scale-90 text-neutral-500"
                     : "top-[15px] text-neutral-500"
                 }`}
             >

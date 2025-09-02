@@ -31,13 +31,14 @@ const Registration = () => {
         title="Регистрация"
         text="Заполните небольшую форму для создания аккаунта Aeterna"
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 w-full">
           <Input
             ref={emailRef}
             type="email"
             icon={<Mail />}
             label="Почта"
             showError={showErrors}
+            className="w-full"
           />
           <Input
             ref={passwordRef}
@@ -45,6 +46,7 @@ const Registration = () => {
             icon={<LockIcon />}
             label="Пароль"
             showError={showErrors}
+            className="w-full"
           />
           <Input
             ref={passwordRef}
@@ -52,6 +54,7 @@ const Registration = () => {
             icon={<LockIcon />}
             label="Пароль еще раз"
             showError={showErrors}
+            className="w-full"
           />
         </div>
         <section className="flex flex-col gap-[12px] w-full mt-4">
