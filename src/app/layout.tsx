@@ -47,7 +47,7 @@ export default function RootLayout({
         {showBlock && (
           <Link href="/">
             <div
-              className="flex gap-[18px] absolute z-2 top-[55px] left-[52px] w-auto"
+              className="flex gap-[18px] absolute z-2 top-[55px] sm:left-[52px] w-auto"
               style={{ color: "var(--Typography-secondary, #FFFFFFB2)" }}
             >
               <ArrowLeft className="stroke-current" />

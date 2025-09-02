@@ -10,6 +10,8 @@ interface MainBlockProps {
   title?: string;
   text?: string;
   classNameLogo?: string;
+  showLogo?: boolean;
+  ContainerClass?: string;
 }
 
 const MainBlock: React.FC<MainBlockProps> = ({
@@ -17,6 +19,8 @@ const MainBlock: React.FC<MainBlockProps> = ({
   className,
   title,
   text,
+  showLogo = true,
+  ContainerClass,
 }) => {
   //   const pathname = usePathname();
   //   const [isRegister, setIsRegister] = useState(false);
@@ -24,13 +28,13 @@ const MainBlock: React.FC<MainBlockProps> = ({
   //     setIsRegister(pathname === "/register");
   //   }, [pathname]);
   return (
-    <div className="flex min-h-screen">
+    <div className={`flex ${ContainerClass}`}>
       <div
-        className={`flex h-auto sm:w-[409px] flex-col items-start p-11 gap-[43px] 
+        className={`flex h-auto flex-col items-start p-11 gap-8
                 bg-gradient-to-b from-[#1F1F1F] to-[#0A0A0A] border-[0.5px] border-neutral-600 
-                rounded-3xl ml-[248px] mt-auto mb-auto ${className}`}
+                rounded-3xl mt-auto mb-auto ${className}`}
       >
-        <Logo />
+        {showLogo && <Logo />}
         <div className="flex flex-col gap-[4px]">
           <h2 className="text-white text-3xl leading-[40px] tracking-[-1.8px] font-normal font-geologica">
             {title}
