@@ -12,7 +12,7 @@ const Block = () => {
         <MainBlock
           title="Авторизация"
           text="Для входа в аккаунт Aeterna введите ваши данные"
-          className="relative z-1 sm:!w-[409px] w-full"
+          className="relative z-1 sm:!w-[409px] w-full  gap-[43px]"
           ContainerClass="min-h-screen sm:ml-[248px]"
         >
           <Auth />

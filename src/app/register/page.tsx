@@ -31,7 +31,7 @@ const Registration = () => {
       <div className="flex flex-col sm:!w-[480px] !h-screen py-[64px] justify-between">
         <Logo className="h-[26px]" />
         <MainBlock
-          className="!border-0 !m-0 bg-none sm:w-[480px] !p-0 !h-min"
+          className="!border-0 !m-0 bg-none sm:w-[480px] !p-0 !h-min gap-8"
           title="Регистрация"
           text="Заполните небольшую форму для создания аккаунта Aeterna"
           showLogo={false}

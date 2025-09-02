@@ -30,7 +30,7 @@ const MainBlock: React.FC<MainBlockProps> = ({
   return (
     <div className={`flex ${ContainerClass}`}>
       <div
-        className={`flex h-auto flex-col items-start p-11 gap-8
+        className={`flex h-auto flex-col items-start p-11
                 bg-gradient-to-b from-[#1F1F1F] to-[#0A0A0A] border-[0.5px] border-neutral-600 
                 rounded-3xl mt-auto mb-auto ${className}`}
       >
