@@ -6,6 +6,7 @@ import Input, { InputHandle } from "@/components/UI/Input/Input";
 import { ArrowRight, LockIcon, Mail } from "lucide-react";
 import { useRef, useState } from "react";
 import Link from "next/link";
+import Copiright from "@/components/Copiright/Copiright";
 
 const Registration = () => {
   const emailRef = useRef<InputHandle>(null);
@@ -25,9 +26,9 @@ const Registration = () => {
     }
   };
   return (
-    <section className="flex flex-col w-auto">
+    <section className="flex min-h-screen flex-col w-auto sm:!w-[50%]">
       <MainBlock
-        className="!border-0 bg-none m-auto sm:!w-[480px]"
+        className="!border-0 bg-none !mx-auto sm:!w-[480px] !h-full py-[64px] justify-between"
         title="Регистрация"
         text="Заполните небольшую форму для создания аккаунта Aeterna"
       >
@@ -69,6 +70,7 @@ const Registration = () => {
             <UIButton color="transparent">У меня уже есть аккаунт</UIButton>
           </Link>
         </section>
+        <Copiright />
       </MainBlock>
     </section>
   );

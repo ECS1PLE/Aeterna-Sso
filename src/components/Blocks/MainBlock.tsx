@@ -1,10 +1,15 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import Logo from "../Illustrations/Logo";
+import { useEffect, useState } from "react";
 
 interface MainBlockProps {
   children?: React.ReactNode;
   className?: string;
   title?: string;
   text?: string;
+  classNameLogo?: string;
 }
 
 const MainBlock: React.FC<MainBlockProps> = ({
@@ -13,6 +18,11 @@ const MainBlock: React.FC<MainBlockProps> = ({
   title,
   text,
 }) => {
+  //   const pathname = usePathname();
+  //   const [isRegister, setIsRegister] = useState(false);
+  //   useEffect(() => {
+  //     setIsRegister(pathname === "/register");
+  //   }, [pathname]);
   return (
     <div className="flex min-h-screen">
       <div

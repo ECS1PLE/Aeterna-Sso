@@ -44,14 +44,15 @@ export default function RootLayout({
       <body
         className={`${geologica.variable} ${geistMono.variable} antialiased bg-black h-[100vh]`}
       >
-        <Link href="/">
-          <div
-            className="flex gap-[18px] absolute z-2 top-[55px] left-[52px] w-auto"
-            style={{ color: "var(--Typography-secondary, #FFFFFFB2)" }}
-          >
-            <ArrowLeft className="stroke-current" />
-            <p
-              className="
+        {showBlock && (
+          <Link href="/">
+            <div
+              className="flex gap-[18px] absolute z-2 top-[55px] left-[52px] w-auto"
+              style={{ color: "var(--Typography-secondary, #FFFFFFB2)" }}
+            >
+              <ArrowLeft className="stroke-current" />
+              <p
+                className="
               font-[Geologica]        
               font-normal              
               text-[20.45px]           
@@ -61,11 +62,12 @@ export default function RootLayout({
               mt-auto
               mb-auto
             "
-            >
-              Вернуться назад
-            </p>
-          </div>
-        </Link>
+              >
+                Вернуться назад
+              </p>
+            </div>
+          </Link>
+        )}
 
         <Background />
         {showBlock && <Block />}
