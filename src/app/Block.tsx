@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import MainBlock from "@/components/Blocks/MainBlock";
 import Auth from "./auth/page";
+import Restore from "./restore/page";
 
 const Block = () => {
   const pathname = usePathname();
@@ -21,7 +22,16 @@ const Block = () => {
     case "/auth":
       return <MainBlock></MainBlock>;
     case "/restore":
-      return <MainBlock></MainBlock>;
+      return (
+        <MainBlock
+          className="sm:!ml-[248px] mt-auto mb-auto w-[409px] gap-[43px] max-h-[481px]"
+          text="Для восстановление пароля введите почту, к которой привязан ваш аккаунт"
+          title="Восстановление пароля"
+          ContainerClass="h-full"
+        >
+          <Restore />
+        </MainBlock>
+      );
     case "/register":
       return <MainBlock></MainBlock>;
     default:

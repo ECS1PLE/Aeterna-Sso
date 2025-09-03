@@ -36,7 +36,7 @@ const MainBlock: React.FC<MainBlockProps> = ({
       >
         {showLogo && <Logo />}
         <div className="flex flex-col gap-[4px]">
-          <h2 className="text-white text-3xl leading-[40px] tracking-[-1.8px] font-normal font-geologica">
+          <h2 className="text-white text-3xl leading-[20px] tracking-[-1.8px] font-normal font-geologica">
             {title}
           </h2>
           <p className="text-[#626262] text-[16px] leading-[16px] tracking-[-0.8px] font-normal font-geologica">
