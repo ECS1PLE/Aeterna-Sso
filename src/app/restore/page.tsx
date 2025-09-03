@@ -8,12 +8,8 @@ import Link from "next/link";
 import NumberInput from "@/components/UI/Input/Number";
 import CodeStep from "@/components/UI/Time/CodeStep";
 
-interface RestoreProps {
-  step: "form" | "code" | "success";
-  setStep: (s: "form" | "code" | "success") => void;
-}
-
-const Restore: React.FC<RestoreProps> = ({ step, setStep }) => {
+const Restore: React.FC = () => {
+  const [step, setStep] = useState<"form" | "code" | "success">("form");
   const emailRef = useRef<InputHandle>(null);
   const codeRef = useRef<InputHandle>(null);
   const [showErrors, setShowErrors] = useState(false);
