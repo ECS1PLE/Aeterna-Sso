@@ -5,6 +5,7 @@ import { useState } from "react";
 import MainBlock from "@/components/Blocks/MainBlock";
 import Auth from "./auth/page";
 import Restore from "./restore/page";
+import Login from "./login/page";
 
 const Block = () => {
   const pathname = usePathname();
@@ -19,14 +20,14 @@ const Block = () => {
           className="relative z-1 sm:!w-[409px] w-full gap-[43px]"
           ContainerClass="min-h-screen sm:ml-[248px]"
         >
-          <Auth />
+          <Login />
         </MainBlock>
       );
 
     case "/restore":
       return (
         <MainBlock
-          className="sm:!ml-[248px] mt-auto mb-auto w-[409px] gap-[43px] max-h-[530px]"
+          className="sm:!ml-[248px] mt-auto mb-auto w-[409px] gap-[32px] max-h-[530px]"
           title={
             step === "form"
               ? "Восстановление пароля"
