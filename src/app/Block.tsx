@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import MainBlock from "@/components/Blocks/MainBlock";
-import Auth from "./auth/page";
 import Restore from "./restore/page";
 import Login from "./login/page";
 
@@ -44,7 +43,7 @@ const Block = () => {
           }
           ContainerClass="h-full"
         >
-          <Restore step={step} setStep={setStep} />
+          <Restore />
         </MainBlock>
       );
 
