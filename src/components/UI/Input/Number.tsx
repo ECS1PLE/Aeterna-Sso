@@ -1,80 +1,99 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 
-interface OtpInputProps {
+export interface NumberInputHandle {
+  validate: () => boolean;
+  getValue: () => string;
+}
+
+interface NumberInputProps {
   length?: number;
 }
 
-const OtpInput: React.FC<OtpInputProps> = ({ length = 6 }) => {
-  const [values, setValues] = useState<string[]>(() => Array(length).fill(""));
-  const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
-
-  useEffect(() => {
-    setValues((prev) => Array.from({ length }, (_, i) => prev[i] ?? ""));
-    inputsRef.current = Array.from(
-      { length },
-      (_, i) => inputsRef.current[i] ?? null
+const NumberInput = forwardRef<NumberInputHandle, NumberInputProps>(
+  ({ length = 6 }, ref) => {
+    const [values, setValues] = useState<string[]>(() =>
+      Array(length).fill("")
     );
-  }, [length]);
+    const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
 
-  const handleChange = (index: number, value: string) => {
-    const v = value.replace(/\D/g, "").slice(0, 1);
-    setValues((prev) => {
-      const next = [...prev];
-      next[index] = v;
-      return next;
-    });
-    if (v && index < length - 1) {
-      inputsRef.current[index + 1]?.focus();
-    }
-  };
+    useEffect(() => {
+      setValues((prev) => Array.from({ length }, (_, i) => prev[i] ?? ""));
+      inputsRef.current = Array.from(
+        { length },
+        (_, i) => inputsRef.current[i] ?? null
+      );
+    }, [length]);
 
-  const handleKeyDown = (
-    index: number,
-    e: React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    if (e.key === "Backspace" && !values[index] && index > 0) {
-      inputsRef.current[index - 1]?.focus();
-    }
-    if (e.key === "ArrowLeft" && index > 0) {
-      inputsRef.current[index - 1]?.focus();
-    }
-    if (e.key === "ArrowRight" && index < length - 1) {
-      inputsRef.current[index + 1]?.focus();
-    }
-  };
+    useImperativeHandle(ref, () => ({
+      validate: () => values.every((v) => v !== ""),
+      getValue: () => values.join(""),
+    }));
 
-  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const pasted = e.clipboardData
-      .getData("text")
-      .replace(/\D/g, "")
-      .slice(0, length);
-    if (!pasted) return;
-    const next = Array.from({ length }, (_, i) => pasted[i] ?? "");
-    setValues(next);
-    const nextIndex = Math.min(pasted.length, length - 1);
-    inputsRef.current[nextIndex]?.focus();
-  };
+    const handleChange = (index: number, value: string) => {
+      const v = value.replace(/\D/g, "").slice(0, 1);
+      setValues((prev) => {
+        const next = [...prev];
+        next[index] = v;
+        return next;
+      });
+      if (v && index < length - 1) {
+        inputsRef.current[index + 1]?.focus();
+      }
+    };
 
-  return (
-    <div className="flex w-full justify-between">
-      {values.map((val, i) => (
-        <input
-          key={i}
-          ref={(el) => {
-            inputsRef.current[i] = el;
-          }}
-          type="text"
-          inputMode="numeric"
-          maxLength={1}
-          value={val}
-          onChange={(e) => handleChange(i, e.target.value)}
-          onKeyDown={(e) => handleKeyDown(i, e)}
-          onPaste={i === 0 ? handlePaste : undefined}
-          placeholder="5"
-          className="
+    const handleKeyDown = (
+      index: number,
+      e: React.KeyboardEvent<HTMLInputElement>
+    ) => {
+      if (e.key === "Backspace" && !values[index] && index > 0) {
+        inputsRef.current[index - 1]?.focus();
+      }
+      if (e.key === "ArrowLeft" && index > 0) {
+        inputsRef.current[index - 1]?.focus();
+      }
+      if (e.key === "ArrowRight" && index < length - 1) {
+        inputsRef.current[index + 1]?.focus();
+      }
+    };
+
+    const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+      e.preventDefault();
+      const pasted = e.clipboardData
+        .getData("text")
+        .replace(/\D/g, "")
+        .slice(0, length);
+      if (!pasted) return;
+      const next = Array.from({ length }, (_, i) => pasted[i] ?? "");
+      setValues(next);
+      const nextIndex = Math.min(pasted.length, length - 1);
+      inputsRef.current[nextIndex]?.focus();
+    };
+
+    return (
+      <div className="flex w-full justify-between">
+        {values.map((val, i) => (
+          <input
+            key={i}
+            ref={(el) => {
+              inputsRef.current[i] = el;
+            }}
+            type="text"
+            inputMode="numeric"
+            maxLength={1}
+            value={val}
+            onChange={(e) => handleChange(i, e.target.value)}
+            onKeyDown={(e) => handleKeyDown(i, e)}
+            onPaste={i === 0 ? handlePaste : undefined}
+            placeholder="5"
+            className="
             flex items-center justify-center 
             border border-[1px] border-neutral-800 
             text-neutral-500 font-sans text-lg 
@@ -83,10 +102,13 @@ const OtpInput: React.FC<OtpInputProps> = ({ length = 6 }) => {
             focus:outline-none focus:ring-0
             transition-opacity duration-300 ease-in-out
           "
-        />
-      ))}
-    </div>
-  );
-};
+          />
+        ))}
+      </div>
+    );
+  }
+);
 
-export default OtpInput;
+NumberInput.displayName = "NumberInput";
+
+export default NumberInput;

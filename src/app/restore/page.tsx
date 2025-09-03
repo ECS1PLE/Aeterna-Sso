@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import UIButton from "@/components/UI/Button/Button";
 import Input, { InputHandle } from "@/components/UI/Input/Input";
-import { ArrowRight, Mail, KeyRound } from "lucide-react";
+import { ArrowRight, Mail, KeyRound, LockIcon } from "lucide-react";
 import Link from "next/link";
 import NumberInput from "@/components/UI/Input/Number";
 import CodeStep from "@/components/UI/Time/CodeStep";
@@ -24,7 +24,8 @@ const Restore: React.FC<RestoreProps> = ({ step, setStep }) => {
     if (step === "form") {
       const emailValid = emailRef.current?.validate() ?? false;
       if (emailValid) {
-        console.log("Email:", emailRef.current!.getValue());
+        const email = emailRef.current!.getValue();
+        console.log("Форма валидна, Email:", email);
         setStep("code");
       }
     }
@@ -32,7 +33,8 @@ const Restore: React.FC<RestoreProps> = ({ step, setStep }) => {
     if (step === "code") {
       const codeValid = codeRef.current?.validate() ?? false;
       if (codeValid) {
-        console.log("Code:", codeRef.current!.getValue());
+        const code = codeRef.current!.getValue();
+        console.log("Код введён:", code);
         setStep("success");
       }
     }
@@ -40,14 +42,38 @@ const Restore: React.FC<RestoreProps> = ({ step, setStep }) => {
 
   if (step === "success") {
     return (
-      <section className="flex flex-col items-center gap-4">
-        <p className="text-center text-sm text-gray-600">
-          Пароль успешно восстановлен! Теперь вы можете войти в свой аккаунт.
-        </p>
-        <Link href="/login">
-          <UIButton color="white">Перейти к авторизации</UIButton>
-        </Link>
-      </section>
+      <>
+        <section className="flex flex-col gap-[12px]">
+          <Input
+            ref={emailRef}
+            type="email"
+            icon={<LockIcon />}
+            label="Пароль"
+            showError={showErrors}
+          />
+          <Input
+            isPassword
+            icon={<LockIcon />}
+            label="Пароль еще раз"
+            showError={showErrors}
+          />
+        </section>
+
+        <section className="flex flex-col gap-[12px] w-full mt-4">
+          <Link href="/">
+            <UIButton
+              color="white"
+              icon={<ArrowRight />}
+              onClick={handleContinue}
+            >
+              Продолжить
+            </UIButton>
+          </Link>
+          <Link href="/restore">
+            <UIButton color="transparent">Отмена</UIButton>
+          </Link>
+        </section>
+      </>
     );
   }
 
@@ -60,7 +86,7 @@ const Restore: React.FC<RestoreProps> = ({ step, setStep }) => {
       {step === "code" && (
         <div className="w-full flex flex-col gap-[4px]">
           <div className="flex w-full ">
-            <NumberInput></NumberInput>
+            <NumberInput ref={codeRef} length={6} />
           </div>
           <CodeStep />
         </div>
