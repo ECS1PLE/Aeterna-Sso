@@ -57,7 +57,7 @@ const Block = () => {
     case "/restore":
       return (
         <MainBlock
-          className="sm:!ml-[248px] mt-auto mb-auto w-[409px] gap-[32px] max-h-[530px]"
+          className="sm:!ml-[248px] mt-auto mb-auto w-[409px] gap-[43px] max-h-[530px]"
           title={
             step === "form"
               ? "Восстановление пароля"
