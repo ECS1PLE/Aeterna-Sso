@@ -5,10 +5,44 @@ import { useState } from "react";
 import MainBlock from "@/components/Blocks/MainBlock";
 import Restore from "./restore/page";
 import Login from "./login/page";
+import Auth from "./auth/page";
+
+// 4 шага для /auth
+const authSteps = [
+  {
+    id: "totp",
+    title: "Откройте телефон",
+    text: "Введите код из приложения для генерации одноразовых паролей",
+    component: Auth,
+  },
+  {
+    id: "sms",
+    title: "Проверьте Telegram",
+    text: "Введите код, который был отправлен вам на ваш Telegram аккаунт @AB*****CH",
+    component: Auth,
+  },
+  {
+    id: "email",
+    title: "Откройте приложение",
+    text: "Отсканируйте QR-код в приложении Aetérna",
+    component: Auth,
+  },
+  {
+    id: "backup",
+    title: "Проврьте почту",
+    text: "Введите код, который был отправлен вам на почту wi****g@gmail.com",
+    component: Auth,
+  },
+] as const;
 
 const Block = () => {
   const pathname = usePathname();
   const [step, setStep] = useState<"form" | "code" | "success">("form");
+  const [authStepIndex, setAuthStepIndex] = useState(0);
+
+  const handleNextMethod = () => {
+    setAuthStepIndex((prev) => (prev < authSteps.length - 1 ? prev + 1 : prev));
+  };
 
   switch (pathname) {
     case "/login":
@@ -48,7 +82,22 @@ const Block = () => {
       );
 
     case "/auth":
-      return <MainBlock></MainBlock>;
+      const currentStep = authSteps[authStepIndex];
+      const StepComponent = currentStep.component;
+
+      return (
+        <MainBlock
+          className="ml-[248px] mt-auto mb-auto gap-[43px] w-[409px]"
+          ContainerClass="min-h-screen sm:ml-[248px]"
+          title={currentStep.title}
+          text={currentStep.text}
+        >
+          <StepComponent
+            stepId={currentStep.id}
+            onAnotherMethod={handleNextMethod}
+          />
+        </MainBlock>
+      );
 
     case "/register":
       return <MainBlock></MainBlock>;

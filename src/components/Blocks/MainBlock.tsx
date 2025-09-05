@@ -35,7 +35,7 @@ const MainBlock: React.FC<MainBlockProps> = ({
                 rounded-3xl mt-auto mb-auto ${className}`}
       >
         {showLogo && <Logo />}
-        <div className="flex flex-col gap-[4px]">
+        <div className="flex flex-col gap-[8px]">
           <h2 className="text-white text-3xl leading-[20px] tracking-[-1.8px] font-normal font-geologica">
             {title}
           </h2>
