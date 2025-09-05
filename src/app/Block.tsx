@@ -83,7 +83,7 @@ const Block = () => {
 
       return (
         <MainBlock
-          className="ml-[248px] mt-auto mb-auto gap-[43px] w-[409px]"
+          className="mt-auto mb-auto gap-[43px] w-[409px]"
           ContainerClass="min-h-screen sm:ml-[248px]"
           title={currentStep.title}
           text={currentStep.text}
