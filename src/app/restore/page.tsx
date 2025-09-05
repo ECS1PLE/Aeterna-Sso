@@ -14,32 +14,32 @@ const Restore: React.FC = () => {
   const codeRef = useRef<InputHandle>(null);
   const [showErrors, setShowErrors] = useState(false);
 
-const handleContinue = () => {
-  setShowErrors(true);
+  const handleContinue = () => {
+    setShowErrors(true);
 
-  if (step === "form") {
-    const emailValid = emailRef.current?.validate() ?? false;
-    const email = emailRef.current?.getValue() ?? "";
-    const emailHasAt = email.includes("@");
+    if (step === "form") {
+      const emailValid = emailRef.current?.validate() ?? false;
+      const email = emailRef.current?.getValue() ?? "";
+      const emailHasAt = email.includes("@");
 
-    if (emailValid && emailHasAt) {
-      console.log("Форма валидна, Email:", email);
-      setStep("code");
-    } else {
-      console.log("Email должен содержать символ '@'");
-      setShowErrors(true)
+      if (emailValid && emailHasAt) {
+        console.log("Форма валидна, Email:", email);
+        setStep("code");
+      } else {
+        console.log("Email должен содержать символ '@'");
+        setShowErrors(true);
+      }
     }
-  }
 
-  if (step === "code") {
-    const codeValid = codeRef.current?.validate() ?? false;
-    if (codeValid) {
-      const code = codeRef.current!.getValue();
-      console.log("Код введён:", code);
-      setStep("success");
+    if (step === "code") {
+      const codeValid = codeRef.current?.validate() ?? false;
+      if (codeValid) {
+        const code = codeRef.current!.getValue();
+        console.log("Код введён:", code);
+        setStep("success");
+      }
     }
-  }
-};
+  };
 
   if (step === "success") {
     return (
@@ -93,7 +93,7 @@ const handleContinue = () => {
         </div>
       )}
 
-      <section className="flex flex-col gap-[12px] w-full mt-4">
+      <section className="flex flex-col gap-[12px] w-full ">
         <UIButton color="white" icon={<ArrowRight />} onClick={handleContinue}>
           Продолжить
         </UIButton>

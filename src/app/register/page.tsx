@@ -62,7 +62,7 @@ const Registration = () => {
               className="w-full"
             />
           </div>
-          <section className="flex flex-col gap-[12px] w-full mt-4">
+          <section className="flex flex-col gap-[12px] w-full">
             <UIButton
               color="white"
               icon={<ArrowRight />}
