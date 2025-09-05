@@ -73,13 +73,10 @@ const Input = forwardRef<InputHandle, InputProps>(
 
     return (
       <div className={`relative w-[321px] ${className}`}>
-        {showError && error && (
-          <p className="text-red-500 text-xs mb-1">{error}</p>
-        )}
 
         <div
           className={`relative flex items-center w-full h-[52px] border rounded-2xl bg-transparent 
-            ${error && showError ? "border-red-500" : "border-neutral-800"}`}
+          `}
         >
           {(icon || label) && (
             <div
