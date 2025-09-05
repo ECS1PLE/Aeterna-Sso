@@ -86,7 +86,9 @@ const Auth: React.FC<AuthProps> = ({ stepId, onAnotherMethod }) => {
           Продолжить
         </UIButton>
         <Link href="/register">
-          <UIButton color="transparent">Создать аккаунт</UIButton>
+          <UIButton color="transparent">
+            {stepId === "totp" ? "Создать аккаунт" : "Создать новый аккаунт"}
+          </UIButton>
         </Link>
       </section>
     </>

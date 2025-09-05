@@ -41,7 +41,7 @@ const Block = () => {
   const [authStepIndex, setAuthStepIndex] = useState(0);
 
   const handleNextMethod = () => {
-    setAuthStepIndex((prev) => (prev < authSteps.length - 1 ? prev + 1 : prev));
+    setAuthStepIndex((prev) => (prev + 1) % authSteps.length);
   };
 
   switch (pathname) {
