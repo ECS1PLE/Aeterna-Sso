@@ -73,9 +73,8 @@ const Input = forwardRef<InputHandle, InputProps>(
 
     return (
       <div className={`relative w-[321px] ${className}`}>
-
         <div
-          className={`relative flex items-center w-full h-[52px] border rounded-2xl bg-transparent 
+          className={`relative flex items-center w-full h-[52px] border border-neutral-800 rounded-2xl bg-transparent 
           `}
         >
           {(icon || label) && (
@@ -103,8 +102,8 @@ const Input = forwardRef<InputHandle, InputProps>(
           <input
             ref={inputRef}
             className="peer w-full h-full pl-[20px] pr-[12px] bg-transparent outline-none 
-              text-sm font-normal font-[Geologica] text-neutral-200 autofill:shadow-[inset_0_0_0px_1000px_none]
-              autofill:caret-neutral-200 autofill:text-neutral-200"
+              text-sm font-normal  font-[Geologica] text-neutral-500 autofill:shadow-[inset_0_0_0px_1000px_none]
+              autofill:caret-neutral-00 autofill:text-neutral-500"
             type={isPassword ? "password" : type}
             defaultValue={defaultValue}
             value={value}

@@ -6,30 +6,38 @@ import NumberInput from "@/components/UI/Input/Number";
 import CodeStep from "@/components/UI/Time/CodeStep";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
-interface AuthProps {
-  stepId: "totp" | "sms" | "email" | "backup";
-  onAnotherMethod: () => void;
-}
+export default function AuthPage() {
+  const steps: Array<"totp" | "sms" | "email" | "backup"> = [
+    "totp",
+    "sms",
+    "email",
+    "backup",
+  ];
+  const [stepId, setStepId] = useState<"totp" | "sms" | "email" | "backup">(
+    "totp"
+  );
 
-const Auth: React.FC<AuthProps> = ({ stepId, onAnotherMethod }) => {
+  const handleAnotherMethod = () => {
+    const index = steps.indexOf(stepId);
+    if (index < steps.length - 1) setStepId(steps[index + 1]);
+  };
+
   const renderFields = () => {
     switch (stepId) {
       case "totp":
         return (
           <>
-            <div className="flex justify-between">
-              <NumberInput />
-            </div>
+            <NumberInput />
             <p
               className="font-geologica font-normal text-[12px] leading-[16px] tracking-[-0.0667em] text-neutral-500 cursor-pointer"
-              onClick={onAnotherMethod}
+              onClick={handleAnotherMethod}
             >
               Другой способ
             </p>
           </>
         );
-
       case "sms":
         return (
           <>
@@ -37,13 +45,12 @@ const Auth: React.FC<AuthProps> = ({ stepId, onAnotherMethod }) => {
             <CodeStep />
             <p
               className="font-geologica font-normal text-[12px] leading-[16px] tracking-[-0.0667em] text-neutral-500 cursor-pointer"
-              onClick={onAnotherMethod}
+              onClick={handleAnotherMethod}
             >
               Другой способ
             </p>
           </>
         );
-
       case "email":
         return (
           <>
@@ -51,27 +58,19 @@ const Auth: React.FC<AuthProps> = ({ stepId, onAnotherMethod }) => {
             <CodeStep />
             <p
               className="font-geologica font-normal text-[12px] leading-[16px] tracking-[-0.0667em] text-neutral-500 cursor-pointer"
-              onClick={onAnotherMethod}
+              onClick={handleAnotherMethod}
             >
               Другой способ
             </p>
           </>
         );
-
       case "backup":
         return (
           <>
             <NumberInput />
             <CodeStep />
-            <p
-              className="font-geologica font-normal text-[12px] leading-[16px] tracking-[-0.0667em] text-neutral-500 cursor-pointer"
-              onClick={onAnotherMethod}
-            >
-              Другой способ
-            </p>
           </>
         );
-
       default:
         return null;
     }
@@ -79,9 +78,8 @@ const Auth: React.FC<AuthProps> = ({ stepId, onAnotherMethod }) => {
 
   return (
     <>
-      <div className="flex flex-col w-full gap-[4px]">{renderFields()}</div>
-
-      <section className="flex flex-col gap-[12px] w-full mt-4">
+      <div className="flex flex-col w-full">{renderFields()}</div>
+      <section className="flex flex-col gap-[12px] w-full">
         <UIButton color="white" icon={<ArrowRight />}>
           Продолжить
         </UIButton>
@@ -93,6 +91,4 @@ const Auth: React.FC<AuthProps> = ({ stepId, onAnotherMethod }) => {
       </section>
     </>
   );
-};
-
-export default Auth;
+}
