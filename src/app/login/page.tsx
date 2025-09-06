@@ -40,7 +40,7 @@ const Login = () => {
         <Input
           ref={passwordRef}
           isPassword
-          icon={<LockCircle />}
+          icon={<LockCircle className="!w-[24px]" />}
           label="Пароль"
           showError={showErrors}
         />

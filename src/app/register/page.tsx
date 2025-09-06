@@ -49,7 +49,7 @@ const Registration = () => {
             <Input
               ref={passwordRef}
               isPassword
-              icon={<LockCircle />}
+              icon={<LockCircle className="!w-[24px]" />}
               label="Пароль"
               showError={showErrors}
               className="w-full"
@@ -57,7 +57,7 @@ const Registration = () => {
             <Input
               ref={passwordRef}
               isPassword
-              icon={<LockCircle />}
+              icon={<LockCircle className="!w-[24px]" />}
               label="Пароль еще раз"
               showError={showErrors}
               className="w-full"

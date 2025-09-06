@@ -91,8 +91,13 @@ const Input = forwardRef<InputHandle, InputProps>(
                 React.cloneElement(
                   icon as React.ReactElement<{ className?: string }>,
                   {
-                    className:
-                      "stroke-current w-[18px] h-auto transition-all duration-300",
+                    className: [
+                      "stroke-current transition-all duration-300",
+                      (icon.props as { className?: string })?.className ||
+                        "w-[18px] h-auto",
+                    ]
+                      .filter(Boolean)
+                      .join(" "),
                   }
                 )}
 

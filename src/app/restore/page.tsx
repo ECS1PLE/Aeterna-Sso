@@ -49,13 +49,13 @@ const Restore: React.FC = () => {
           <Input
             ref={emailRef}
             type="email"
-            icon={<LockCircle />}
+            icon={<LockCircle className="!w-[24px]" />}
             label="Пароль"
             showError={showErrors}
           />
           <Input
             isPassword
-            icon={<LockCircle />}
+            icon={<LockCircle className="!w-[24px]" />}
             label="Пароль еще раз"
             showError={showErrors}
           />
