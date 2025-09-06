@@ -6,68 +6,75 @@ import BlueSphere from "../Sphere/Blue";
 import GreenSphere from "../Sphere/Green";
 import LimeSphere from "../Sphere/Lime";
 
-interface SphereWrapperProps {
-  children: React.ReactNode;
-  className?: string;
-  keyProp: string; // уникальный ключ для layout анимации
+interface SphereData {
+  key: string;
+  component: React.ReactNode;
+  style: React.CSSProperties; // top/left/right/bottom/width/height
+  origin: string; // transform-origin
+  rotate?: number; // угол поворота в градусах
 }
 
-const SphereWrapper = ({
-  children,
-  className,
-  keyProp,
-}: SphereWrapperProps) => (
-  <motion.div
-    layout // <--- вот это позволяет анимировать перемещение
-    key={keyProp}
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 0.7, scale: 1 }}
-    exit={{ opacity: 0, scale: 0.8 }}
-    transition={{ duration: 1, ease: "easeInOut" }}
-    className={`absolute ${className}`}
-  >
-    {children}
-  </motion.div>
-);
+const SphereWrapper = ({ sphere }: { sphere: SphereData }) => {
+  return (
+    <motion.div
+      style={{ position: "absolute", ...sphere.style }}
+      initial={{ opacity: 0, scale: 0, rotate: sphere.rotate || 0 }}
+      animate={{ opacity: 0.7, scale: 1, rotate: sphere.rotate || 0 }}
+      exit={{ opacity: 0, scale: 0, rotate: sphere.rotate || 0 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+    >
+      {sphere.component}
+    </motion.div>
+  );
+};
 
 const BackgroundPages = () => {
   const pathname = usePathname() ?? "";
 
-  const spheres = {
+  const spheres: Record<string, SphereData[]> = {
     login: [
       {
         key: "login-top",
-        className: "top-0 -right-[1200px] -translate-x-1/2 w-[2033px]",
         component: <BlueSphere />,
+        style: { top: -200, right: -200, width: 2033, height: 2033 },
+        origin: "top right",
       },
       {
         key: "login-bottom",
-        className: "-bottom-[580px] -right-[700px] rotate-180 w-[1433px]",
         component: <BlueSphere />,
+        style: { bottom: -300, right: -950, width: 1433, height: 1433 },
+        origin: "bottom right",
+        rotate: 180,
       },
     ],
     auth: [
       {
         key: "auth-bottom-right",
-        className: "right-0 w-full -bottom-[250px] h-full",
         component: <GreenSphere />,
+        style: { bottom: -350, right: 0, width: 1920, height: 1080 },
+        origin: "bottom right",
       },
       {
         key: "auth-top-right",
-        className: "-top-[250px] -right-[300px] rotate-180 h-full",
         component: <GreenSphere />,
+        style: { top: -500, right: -200, width: 1920, height: 1080 },
+        origin: "top right",
+        rotate: 180,
       },
     ],
     restore: [
       {
         key: "restore-top-left",
-        className: "top-0 left-0 rotate-180",
         component: <LimeSphere />,
+        style: { top: 0, left: 1200, width: 1920, height: 1080 },
+        origin: "top left",
       },
       {
         key: "restore-bottom-right",
-        className: "bottom-0 right-0",
         component: <LimeSphere />,
+        style: { top: 0, right: 1200, width: 1920, height: 1080 },
+        origin: "bottom right",
+        rotate: 180,
       },
     ],
   };
@@ -83,7 +90,7 @@ const BackgroundPages = () => {
 
   return (
     <div className="absolute inset-0 -z-[1] overflow-hidden">
-      {/* SVG фон */}
+      {/* Фоновый SVG */}
       <svg
         viewBox="0 0 1920 1080"
         fill="none"
@@ -119,11 +126,10 @@ const BackgroundPages = () => {
         </defs>
       </svg>
 
-      <AnimatePresence mode="wait">
+      {/* Анимация сфер */}
+      <AnimatePresence>
         {currentSpheres.map((s) => (
-          <SphereWrapper key={s.key} keyProp={s.key} className={s.className}>
-            {s.component}
-          </SphereWrapper>
+          <SphereWrapper key={s.key} sphere={s} />
         ))}
       </AnimatePresence>
     </div>
