@@ -11,17 +11,40 @@ interface SphereData {
   component: React.ReactNode;
   style: React.CSSProperties; // top/left/right/bottom/width/height
   origin: string; // transform-origin
-  rotate?: number; // угол поворота в градусах
+  rotate?: number; // угол поворота
+  from?: { x?: number; y?: number }; // смещение относительно позиции
 }
 
 const SphereWrapper = ({ sphere }: { sphere: SphereData }) => {
   return (
     <motion.div
-      style={{ position: "absolute", ...sphere.style }}
-      initial={{ opacity: 0, scale: 0, rotate: sphere.rotate || 0 }}
-      animate={{ opacity: 0.7, scale: 1, rotate: sphere.rotate || 0 }}
-      exit={{ opacity: 0, scale: 0, rotate: sphere.rotate || 0 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      style={{
+        position: "absolute",
+        ...sphere.style,
+        transformOrigin: sphere.origin,
+      }}
+      initial={{
+        opacity: 0,
+        scale: 0,
+        x: sphere.from?.x ?? 0,
+        y: sphere.from?.y ?? 0,
+        rotate: sphere.rotate ?? 0,
+      }}
+      animate={{
+        opacity: 0.7,
+        scale: 1,
+        x: 0,
+        y: 0,
+        rotate: sphere.rotate ?? 0,
+      }}
+      exit={{
+        opacity: 0,
+        scale: 0,
+        x: sphere.from?.x ?? 0,
+        y: sphere.from?.y ?? 0,
+        rotate: sphere.rotate ?? 0,
+      }}
+      transition={{ duration: 0.7, ease: "easeInOut" }}
     >
       {sphere.component}
     </motion.div>
@@ -36,14 +59,16 @@ const BackgroundPages = () => {
       {
         key: "login-top",
         component: <BlueSphere />,
-        style: { top: -200, right: -200, width: 2033, height: 2033 },
+        style: { top: 0, right: -200, width: 2033, height: 2033 },
         origin: "top right",
+        from: { x: -200, y: -200 },
       },
       {
         key: "login-bottom",
         component: <BlueSphere />,
-        style: { bottom: -300, right: -950, width: 1433, height: 1433 },
+        style: { bottom: 1000, right: 700, width: 1433, height: 1433 },
         origin: "bottom right",
+        from: { x: -950, y: 1200 },
         rotate: 180,
       },
     ],
@@ -51,14 +76,16 @@ const BackgroundPages = () => {
       {
         key: "auth-bottom-right",
         component: <GreenSphere />,
-        style: { bottom: -350, right: 0, width: 1920, height: 1080 },
+        style: { bottom: -346, right: 0, width: 1920, height: 1080 },
         origin: "bottom right",
+        from: { x: -1200, y: 650 },
       },
       {
         key: "auth-top-right",
         component: <GreenSphere />,
-        style: { top: -500, right: -200, width: 1920, height: 1080 },
+        style: { top: 720, right: 1600, width: 1920, height: 1080 },
         origin: "top right",
+        from: { x: 800, y: -1000 },
         rotate: 180,
       },
     ],
@@ -66,14 +93,16 @@ const BackgroundPages = () => {
       {
         key: "restore-top-left",
         component: <LimeSphere />,
-        style: { top: 0, left: 1200, width: 1920, height: 1080 },
+        style: { top: -100, left: 1200, width: 1920, height: 1080 },
         origin: "top left",
+        from: { x: 1200, y: 600 },
       },
       {
         key: "restore-bottom-right",
         component: <LimeSphere />,
-        style: { top: 0, right: 1200, width: 1920, height: 1080 },
+        style: { top: -1100, right: 3200, width: 1920, height: 1080 },
         origin: "bottom right",
+        from: { x: -1100, y: 3200 },
         rotate: 180,
       },
     ],
