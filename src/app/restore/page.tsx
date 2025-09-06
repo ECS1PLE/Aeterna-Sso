@@ -7,6 +7,7 @@ import { ArrowRight, Mail, LockIcon } from "lucide-react";
 import Link from "next/link";
 import NumberInput from "@/components/UI/Input/Number";
 import CodeStep from "@/components/UI/Time/CodeStep";
+import LockCircle from "@/components/UI/Icons/LockCircle";
 
 const Restore: React.FC = () => {
   const [step, setStep] = useState<"form" | "code" | "success">("form");
@@ -48,13 +49,13 @@ const Restore: React.FC = () => {
           <Input
             ref={emailRef}
             type="email"
-            icon={<LockIcon />}
+            icon={<LockCircle />}
             label="Пароль"
             showError={showErrors}
           />
           <Input
             isPassword
-            icon={<LockIcon />}
+            icon={<LockCircle />}
             label="Пароль еще раз"
             showError={showErrors}
           />

@@ -7,6 +7,7 @@ import { Mail } from "lucide-react";
 import { LockIcon } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import LockCircle from "@/components/UI/Icons/LockCircle";
 
 const Login = () => {
   const emailRef = useRef<InputHandle>(null);
@@ -39,7 +40,7 @@ const Login = () => {
         <Input
           ref={passwordRef}
           isPassword
-          icon={<LockIcon />}
+          icon={<LockCircle />}
           label="Пароль"
           showError={showErrors}
         />

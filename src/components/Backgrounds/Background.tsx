@@ -9,10 +9,10 @@ import LimeSphere from "../Sphere/Lime";
 interface SphereData {
   key: string;
   component: React.ReactNode;
-  style: React.CSSProperties; // top/left/right/bottom/width/height
-  origin: string; // transform-origin
-  rotate?: number; // угол поворота
-  from?: { x?: number; y?: number }; // смещение относительно позиции
+  style: React.CSSProperties;
+  origin: string;
+  rotate?: number;
+  from?: { x?: number; y?: number };
 }
 
 const SphereWrapper = ({ sphere }: { sphere: SphereData }) => {
@@ -119,7 +119,6 @@ const BackgroundPages = () => {
 
   return (
     <div className="absolute inset-0 -z-[1] overflow-hidden">
-      {/* Фоновый SVG */}
       <svg
         viewBox="0 0 1920 1080"
         fill="none"
@@ -155,7 +154,6 @@ const BackgroundPages = () => {
         </defs>
       </svg>
 
-      {/* Анимация сфер */}
       <AnimatePresence>
         {currentSpheres.map((s) => (
           <SphereWrapper key={s.key} sphere={s} />

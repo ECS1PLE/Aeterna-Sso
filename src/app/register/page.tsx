@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import Copiright from "@/components/Copiright/Copiright";
 import Logo from "@/components/Illustrations/Logo";
+import LockCircle from "@/components/UI/Icons/LockCircle";
 
 const Registration = () => {
   const emailRef = useRef<InputHandle>(null);
@@ -48,7 +49,7 @@ const Registration = () => {
             <Input
               ref={passwordRef}
               isPassword
-              icon={<LockIcon />}
+              icon={<LockCircle />}
               label="Пароль"
               showError={showErrors}
               className="w-full"
@@ -56,7 +57,7 @@ const Registration = () => {
             <Input
               ref={passwordRef}
               isPassword
-              icon={<LockIcon />}
+              icon={<LockCircle />}
               label="Пароль еще раз"
               showError={showErrors}
               className="w-full"

@@ -9,7 +9,7 @@ import React, {
 } from "react";
 
 interface InputProps {
-  icon?: React.ReactElement<React.SVGProps<SVGSVGElement>>;
+  icon?: React.ReactNode;
   label?: string;
   isPassword?: boolean;
   defaultValue?: string;
@@ -87,10 +87,15 @@ const Input = forwardRef<InputHandle, InputProps>(
                 }`}
             >
               {icon &&
-                React.cloneElement(icon, {
-                  className:
-                    "stroke-current w-[18px] h-[18px] transition-all duration-300",
-                })}
+                React.isValidElement(icon) &&
+                React.cloneElement(
+                  icon as React.ReactElement<{ className?: string }>,
+                  {
+                    className:
+                      "stroke-current w-[18px] h-auto transition-all duration-300",
+                  }
+                )}
+
               {label && (
                 <span className="font-[Geologica] text-sm transition-all duration-300">
                   {label}
