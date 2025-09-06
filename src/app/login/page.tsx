@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react";
 import UIButton from "@/components/UI/Button/Button";
 import Input, { InputHandle } from "@/components/UI/Input/Input";
-import { Mail } from "lucide-react";
+import Mail from "@/components/UI/Icons/Mail";
 import { LockIcon } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
