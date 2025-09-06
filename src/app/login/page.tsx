@@ -46,11 +46,20 @@ const Login = () => {
       </section>
 
       <section className="flex flex-col gap-[12px] w-full">
-        <UIButton color="white" icon={<ArrowRight />} onClick={handleContinue}>
-          Продолжить
-        </UIButton>
+        <Link href="/auth">
+          <UIButton
+            color="white"
+            icon={<ArrowRight />}
+            onClick={handleContinue}
+          >
+            Продолжить
+          </UIButton>
+        </Link>
         <Link href="/register">
           <UIButton color="transparent">Создать аккаунт</UIButton>
+        </Link>
+        <Link href="/restore">
+          <UIButton color="transparent">Забыли пароль?</UIButton>
         </Link>
       </section>
     </>

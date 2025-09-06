@@ -21,7 +21,7 @@ const SphereWrapper = ({ sphere }: { sphere: SphereData }) => {
       initial={{ opacity: 0, scale: 0, rotate: sphere.rotate || 0 }}
       animate={{ opacity: 0.7, scale: 1, rotate: sphere.rotate || 0 }}
       exit={{ opacity: 0, scale: 0, rotate: sphere.rotate || 0 }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
     >
       {sphere.component}
     </motion.div>
