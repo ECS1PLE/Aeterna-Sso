@@ -29,7 +29,6 @@ const Restore: React.FC = () => {
         setStep("code");
       } else {
         console.log("Email должен содержать символ '@'");
-        setShowErrors(true);
       }
     }
 
@@ -41,55 +40,97 @@ const Restore: React.FC = () => {
         setStep("success");
       }
     }
+
+    if (step === "success") {
+      console.log("Пароль успешно изменён!");
+    }
   };
 
-  if (step === "success") {
-    return (
-      <>
-        <section className="flex flex-col gap-[12px]">
-          <Input
-            ref={emailRef}
-            type="email"
-            icon={<LockCircle className="!w-[24px]" />}
-            label="Пароль"
-            showError={showErrors}
-          />
-          <Input
-            isPassword
-            icon={<LockCircle className="!w-[24px]" />}
-            label="Пароль еще раз"
-            showError={showErrors}
-          />
-        </section>
-      </>
-    );
-  }
+  switch (step) {
+    case "form":
+      return (
+        <>
+          <Input ref={emailRef} icon={<Mail />} type="text" label="Почта" />
 
-  return (
-    <>
-      {step === "form" && (
-        <Input ref={emailRef} icon={<Mail />} type="text" label="Почта" />
-      )}
+          <section className="flex flex-col gap-[12px] w-full mt-4">
+            <UIButton
+              color="white"
+              icon={<ArrowRight />}
+              onClick={handleContinue}
+            >
+              Продолжить
+            </UIButton>
+            <Link href="/login">
+              <UIButton color="transparent">Назад</UIButton>
+            </Link>
+          </section>
+        </>
+      );
 
-      {step === "code" && (
-        <div className="w-full flex flex-col gap-[4px]">
-          <div className="flex w-full ">
-            <NumberInput ref={codeRef} length={6} />
+    case "code":
+      return (
+        <>
+          <div className="w-full flex flex-col gap-[4px]">
+            <div className="flex w-full">
+              <NumberInput ref={codeRef} length={6} />
+            </div>
+            <CodeStep />
           </div>
-          <CodeStep />
-        </div>
-      )}
 
-      <section className="flex flex-col gap-[12px] w-full ">
-        <UIButton color="white" icon={<ArrowRight />} onClick={handleContinue}>
-          Продолжить
-        </UIButton>
-        <Link href="/login">
-          <UIButton color="transparent">Назад</UIButton>
-        </Link>
-      </section>
-    </>
-  );
+          <section className="flex flex-col gap-[12px] w-full mt-4">
+            <UIButton
+              color="white"
+              icon={<ArrowRight />}
+              onClick={handleContinue}
+            >
+              Продолжить
+            </UIButton>
+            <Link href="/login">
+              <UIButton color="transparent">Назад</UIButton>
+            </Link>
+          </section>
+        </>
+      );
+
+    case "success":
+      return (
+        <>
+          <section className="flex flex-col gap-[12px]">
+            <Input
+              ref={emailRef}
+              type="email"
+              icon={<LockCircle className="!w-[24px]" />}
+              label="Пароль"
+              showError={showErrors}
+            />
+            <Input
+              isPassword
+              icon={<LockCircle className="!w-[24px]" />}
+              label="Пароль еще раз"
+              showError={showErrors}
+            />
+          </section>
+
+          <section className="flex flex-col gap-[12px] w-full mt-4">
+            <Link href="/">
+              <UIButton
+                color="white"
+                icon={<ArrowRight />}
+                onClick={handleContinue}
+              >
+                Продолжить
+              </UIButton>
+            </Link>
+            <Link href="/restore">
+              <UIButton color="transparent">Отмена</UIButton>
+            </Link>
+          </section>
+        </>
+      );
+
+    default:
+      return null;
+  }
 };
 
 export default Restore;
