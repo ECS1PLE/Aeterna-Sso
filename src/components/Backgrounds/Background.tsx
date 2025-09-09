@@ -95,7 +95,7 @@ const BackgroundPages = () => {
         component: <LimeSphere className="w-auto h-full" />,
         style: { top: "0%", right: 0, transform: "translateY(-50%)" },
         origin: "center right",
-        from: { x: 800, y: 0 },
+        from: { x: 800, y: -600 },
       },
       {
         key: "restore-left",
@@ -106,7 +106,7 @@ const BackgroundPages = () => {
           transform: "translateY(-50%)",
         },
         origin: "center left",
-        from: { x: -800, y: -300 },
+        from: { x: -800, y: -600 },
       },
     ],
   };
