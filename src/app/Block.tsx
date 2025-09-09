@@ -47,7 +47,7 @@ const Block = () => {
         <MainBlock
           title="Авторизация"
           text="Для входа в аккаунт Aeterna введите ваши данные"
-          className="relative z-1 sm:!w-[409px] w-full gap-[43px]"
+          className="relative z-1 w-screen sm:!w-[409px] w-full gap-[43px]"
           ContainerClass="min-h-screen sm:ml-[248px]"
         >
           <Login />
@@ -57,7 +57,7 @@ const Block = () => {
     case "/restore":
       return (
         <MainBlock
-          className="sm:!ml-[248px] mt-auto mb-auto w-[409px] gap-[43px] max-h-[530px]"
+          className="sm:!ml-[248px] mt-auto mb-auto w-screen sm:w-[409px] gap-[43px] max-h-[530px]"
           title={
             step === "form"
               ? "Восстановление пароля"
@@ -83,7 +83,7 @@ const Block = () => {
 
       return (
         <MainBlock
-          className="mt-auto mb-auto gap-[43px] w-[409px]"
+          className="mt-auto mb-auto gap-[43px] w-screen sm:w-[409px]"
           ContainerClass="min-h-screen sm:ml-[248px]"
           title={currentStep.title}
           text={currentStep.text}

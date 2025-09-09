@@ -29,23 +29,29 @@ const Login = () => {
 
   return (
     <>
-      <section className="flex flex-col gap-[12px]">
-        <Input
-          ref={emailRef}
-          type="email"
-          icon={<Mail />}
-          label="E-Mail"
-          showError={showErrors}
-        />
-        <Input
-          ref={passwordRef}
-          isPassword
-          icon={<LockCircle className="!w-[24px]" />}
-          label="Пароль"
-          showError={showErrors}
-        />
-      </section>
-
+      <div className="flex flex-col gap-[4px]">
+        <section className="flex flex-col gap-[12px]">
+          <Input
+            ref={emailRef}
+            type="email"
+            icon={<Mail />}
+            label="E-Mail"
+            showError={showErrors}
+          />
+          <Input
+            ref={passwordRef}
+            isPassword
+            icon={<LockCircle className="!w-[24px]" />}
+            label="Пароль"
+            showError={showErrors}
+          />
+        </section>
+        <Link href="/restore">
+          <p className="font-geologica font-normal text-[12px] leading-[16px] flex items-center tracking-[-0.8px] text-[#404040]">
+            Забыли пароль?
+          </p>
+        </Link>
+      </div>
       <section className="flex flex-col gap-[12px] w-full">
         <Link href="/auth">
           <UIButton
@@ -58,9 +64,6 @@ const Login = () => {
         </Link>
         <Link href="/register">
           <UIButton color="transparent">Создать аккаунт</UIButton>
-        </Link>
-        <Link href="/restore">
-          <UIButton color="transparent">Забыли пароль?</UIButton>
         </Link>
       </section>
     </>

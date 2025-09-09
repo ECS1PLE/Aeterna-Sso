@@ -36,3 +36,10 @@ body,
 html {
   overflow-y: hidden;
 }
+
+@media screen and (max-width: 640px) {
+  html,
+  body {
+    overflow: hidden;
+  }
+}
