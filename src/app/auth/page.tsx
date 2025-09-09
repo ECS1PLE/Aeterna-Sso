@@ -77,9 +77,10 @@ export default function AuthPage() {
   };
 
   return (
-    <>
+    <div className="flex flex-col w-full">
       <div className="flex flex-col w-full">{renderFields()}</div>
-      <section className="flex flex-col gap-[12px] w-full">
+
+      <section className="flex flex-col gap-[12px] w-full mt-4">
         <UIButton color="white" icon={<ArrowRight />}>
           Продолжить
         </UIButton>
@@ -89,6 +90,6 @@ export default function AuthPage() {
           </UIButton>
         </Link>
       </section>
-    </>
+    </div>
   );
 }
