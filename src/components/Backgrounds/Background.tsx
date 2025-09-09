@@ -91,19 +91,22 @@ const BackgroundPages = () => {
     ],
     restore: [
       {
-        key: "restore-top-left",
-        component: <LimeSphere />,
-        style: { top: -100, left: 1200, width: 1920, height: 1080 },
-        origin: "top left",
-        from: { x: 1200, y: 600 },
+        key: "restore-right",
+        component: <LimeSphere className="w-auto h-full" />,
+        style: { top: "0%", right: 0, transform: "translateY(-50%)" },
+        origin: "center right",
+        from: { x: 800, y: 0 },
       },
       {
-        key: "restore-bottom-right",
-        component: <LimeSphere />,
-        style: { top: -1100, right: 3200, width: 1920, height: 1080 },
-        origin: "bottom right",
-        from: { x: -1100, y: 3200 },
-        rotate: 180,
+        key: "restore-left",
+        component: <LimeSphere className="w-auto h-full rotate-180" />,
+        style: {
+          top: "0%",
+          left: 0,
+          transform: "translateY(-50%)",
+        },
+        origin: "center left",
+        from: { x: -800, y: -300 },
       },
     ],
   };
