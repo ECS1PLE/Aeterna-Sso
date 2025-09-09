@@ -52,7 +52,7 @@ const Restore: React.FC = () => {
         <>
           <Input ref={emailRef} icon={<Mail />} type="text" label="Почта" />
 
-          <section className="flex flex-col gap-[12px] w-full mt-4">
+          <section className="flex flex-col gap-[12px] w-full">
             <UIButton
               color="white"
               icon={<ArrowRight />}
@@ -77,7 +77,7 @@ const Restore: React.FC = () => {
             <CodeStep />
           </div>
 
-          <section className="flex flex-col gap-[12px] w-full mt-4">
+          <section className="flex flex-col gap-[12px] w-full">
             <UIButton
               color="white"
               icon={<ArrowRight />}
@@ -111,7 +111,7 @@ const Restore: React.FC = () => {
             />
           </section>
 
-          <section className="flex flex-col gap-[12px] w-full mt-4">
+          <section className="flex flex-col gap-[12px] w-full">
             <Link href="/">
               <UIButton
                 color="white"

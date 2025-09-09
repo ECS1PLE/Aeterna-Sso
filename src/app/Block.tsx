@@ -36,10 +36,11 @@ const Block = () => {
   const [step, setStep] = useState<"form" | "code" | "success">("form");
 
   const handleNextMethod = () => {
-    if (authStepIndex < authSteps.length - 1) {
+    if (authStepIndex < authSteps.length - 1)
       setAuthStepIndex(authStepIndex + 1);
-    }
   };
+
+  const currentStep = authSteps[authStepIndex];
 
   switch (pathname) {
     case "/login":
@@ -79,8 +80,6 @@ const Block = () => {
       );
 
     case "/auth":
-      const currentStep = authSteps[authStepIndex];
-
       return (
         <MainBlock
           className="mt-auto mb-auto gap-[43px] w-screen sm:w-[409px]"
