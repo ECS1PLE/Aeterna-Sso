@@ -1,95 +1,44 @@
 "use client";
 
-import Qr from "@/components/Illustrations/QR";
-import UIButton from "@/components/UI/Button/Button";
-import NumberInput from "@/components/UI/Input/Number";
-import CodeStep from "@/components/UI/Time/CodeStep";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
+import MainBlock from "@/components/Blocks/MainBlock";
+import AuthPage from "./AuthForm";
 
-export default function AuthPage() {
-  const steps: Array<"totp" | "sms" | "email" | "backup"> = [
-    "totp",
-    "sms",
-    "email",
-    "backup",
-  ];
-  const [stepId, setStepId] = useState<"totp" | "sms" | "email" | "backup">(
-    "totp"
-  );
+const authSteps = [
+  {
+    id: "totp",
+    title: "Откройте телефон",
+    text: "Введите код из приложения для генерации одноразовых паролей",
+  },
+  {
+    id: "sms",
+    title: "Проверьте Telegram",
+    text: "Введите код, который был отправлен вам на ваш Telegram аккаунт @AB*****CH",
+  },
+  {
+    id: "email",
+    title: "Откройте приложение",
+    text: "Отсканируйте QR-код в приложении Aetérna",
+  },
+  {
+    id: "backup",
+    title: "Проверьте почту",
+    text: "Введите код, который был отправлен вам на почту wi****g@gmail.com",
+  },
+] as const;
 
-  const handleAnotherMethod = () => {
-    const index = steps.indexOf(stepId);
-    if (index < steps.length - 1) setStepId(steps[index + 1]);
-  };
-
-  const renderFields = () => {
-    switch (stepId) {
-      case "totp":
-        return (
-          <>
-            <NumberInput />
-            <p
-              className="font-geologica font-normal text-[12px] leading-[16px] tracking-[-0.0667em] text-neutral-500 cursor-pointer"
-              onClick={handleAnotherMethod}
-            >
-              Другой способ
-            </p>
-          </>
-        );
-      case "sms":
-        return (
-          <>
-            <NumberInput />
-            <CodeStep />
-            <p
-              className="font-geologica font-normal text-[12px] leading-[16px] tracking-[-0.0667em] cursor-pointer text-neutral-500 "
-              onClick={handleAnotherMethod}
-            >
-              Другой способ
-            </p>
-          </>
-        );
-      case "email":
-        return (
-          <>
-            <Qr />
-            <CodeStep />
-            <p
-              className="font-geologica font-normal text-[12px] leading-[16px] tracking-[-0.0667em] text-neutral-500 cursor-pointer"
-              onClick={handleAnotherMethod}
-            >
-              Другой способ
-            </p>
-          </>
-        );
-      case "backup":
-        return (
-          <>
-            <NumberInput />
-            <CodeStep />
-          </>
-        );
-      default:
-        return null;
-    }
-  };
+export default function AuthPageWrapper() {
+  const [authStepIndex, setAuthStepIndex] = useState(0);
+  const currentStep = authSteps[authStepIndex];
 
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex flex-col w-full">{renderFields()}</div>
-
-      <section className="flex flex-col gap-[12px] w-full mt-[43px]">
-        <UIButton color="white" icon={<ArrowRight />}>
-          Продолжить
-        </UIButton>
-        <Link href="/register">
-          <UIButton color="transparent">
-            {stepId === "totp" ? "Создать аккаунт" : "Создать новый аккаунт"}
-          </UIButton>
-        </Link>
-      </section>
-    </div>
+    <MainBlock
+      className="mt-auto mb-auto gap-[43px] w-screen sm:w-[409px]"
+      ContainerClass="min-h-screen sm:ml-[248px]"
+      title={currentStep.title}
+      text={currentStep.text}
+    >
+      <AuthPage />
+    </MainBlock>
   );
 }
