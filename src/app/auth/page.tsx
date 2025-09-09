@@ -44,7 +44,7 @@ export default function AuthPage() {
             <NumberInput />
             <CodeStep />
             <p
-              className="font-geologica font-normal text-[12px] leading-[16px] tracking-[-0.0667em] text-neutral-500 cursor-pointer"
+              className="font-geologica font-normal text-[12px] leading-[16px] tracking-[-0.0667em] cursor-pointer text-neutral-500 "
               onClick={handleAnotherMethod}
             >
               Другой способ
