@@ -61,21 +61,6 @@ const Restore: React.FC = () => {
             showError={showErrors}
           />
         </section>
-
-        <section className="flex flex-col gap-[12px] w-full mt-4">
-          <Link href="/">
-            <UIButton
-              color="white"
-              icon={<ArrowRight />}
-              onClick={handleContinue}
-            >
-              Продолжить
-            </UIButton>
-          </Link>
-          <Link href="/restore">
-            <UIButton color="transparent">Отмена</UIButton>
-          </Link>
-        </section>
       </>
     );
   }
