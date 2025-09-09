@@ -80,7 +80,7 @@ export default function AuthPage() {
     <div className="flex flex-col w-full">
       <div className="flex flex-col w-full">{renderFields()}</div>
 
-      <section className="flex flex-col gap-[12px] w-full mt-4">
+      <section className="flex flex-col gap-[12px] w-full mt-[43px]">
         <UIButton color="white" icon={<ArrowRight />}>
           Продолжить
         </UIButton>
